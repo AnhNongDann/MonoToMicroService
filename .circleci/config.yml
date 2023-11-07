@@ -63,7 +63,7 @@ jobs:
           command: docker build -t udagram-reverseproxy ./udagram-reverseproxy
       - run:
           name: Tagging
-          command: docker tag udagram-reverseproxy anhnongdann/udagram-reverseproxy:v1d
+          command: docker tag udagram-reverseproxy anhnongdann/udagram-reverseproxy:v1c
       - run:
           name: Push
           command: |
