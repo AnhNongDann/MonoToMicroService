@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  AWS_BUCKET: project320231104
+  AWS_PROFILE: default
+  AWS_REGION: us-east-1
+  JWT_SECRET: hello
+  POSTGRES_USERNAME: trunghq5
+  POSTGRES_PASSWORD: as123456
+  POSTGRES_HOST: mydatabase-instance.c31xxjlwyget.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: first_db
+  URL: http://localhost:8100
+  NODE_OPTIONS: --max-old-space-size=1024
