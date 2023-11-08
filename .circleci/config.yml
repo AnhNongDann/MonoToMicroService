@@ -12,12 +12,12 @@ jobs:
           command: docker build -t udagram-api-feed ./udagram-api-feed
       - run:
           name: Tagging
-          command: docker tag udagram-api-feed anhnongdann/udagram-api-feed:v1d
+          command: docker tag udagram-api-feed anhnongdann/udagram-api-feed:v2a
       - run:
           name: Push
           command: |
             echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-            docker push anhnongdann/udagram-api-feed:v1d
+            docker push anhnongdann/udagram-api-feed:v2a
   build-api-user:
     docker:
       - image: cimg/base:stable
@@ -29,12 +29,12 @@ jobs:
           command: docker build -t udagram-api-user ./udagram-api-user
       - run:
           name: Tagging
-          command: docker tag udagram-api-user anhnongdann/udagram-api-user:v1d
+          command: docker tag udagram-api-user anhnongdann/udagram-api-user:v2a
       - run:
           name: Push
           command: |
             echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-            docker push anhnongdann/udagram-api-user:v1d
+            docker push anhnongdann/udagram-api-user:v2a
   build-frontend:
     docker:
       - image: cimg/base:stable
@@ -63,12 +63,12 @@ jobs:
           command: docker build -t udagram-reverseproxy ./udagram-reverseproxy
       - run:
           name: Tagging
-          command: docker tag udagram-reverseproxy anhnongdann/udagram-reverseproxy:v1c
+          command: docker tag udagram-reverseproxy anhnongdann/udagram-reverseproxy:v2a
       - run:
           name: Push
           command: |
             echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-            docker push anhnongdann/udagram-reverseproxy:v1c
+            docker push anhnongdann/udagram-reverseproxy:v2a
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
