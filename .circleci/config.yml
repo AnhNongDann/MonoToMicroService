@@ -46,12 +46,12 @@ jobs:
           command: docker build -t udagram-frontend ./udagram-frontend
       - run:
           name: Tagging
-          command: docker tag udagram-frontend anhnongdann/udagram-frontend:v6
+          command: docker tag udagram-frontend anhnongdann/udagram-frontend:v7
       - run:
           name: Push
           command: |
             echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-            docker push anhnongdann/udagram-frontend:v6
+            docker push anhnongdann/udagram-frontend:v7
   build-reverseproxy:
     docker:
       - image: cimg/base:stable
