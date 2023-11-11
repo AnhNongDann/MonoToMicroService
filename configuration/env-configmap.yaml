@@ -7,8 +7,6 @@ data:
   AWS_PROFILE: default
   AWS_REGION: us-east-1
   JWT_SECRET: hello
-  POSTGRES_USERNAME: trunghq5
-  POSTGRES_PASSWORD: as123456
   POSTGRES_HOST: mydatabase.c3s5ln058mo2.us-east-1.rds.amazonaws.com
   POSTGRES_DB: first_db
   URL: http://localhost:8100
