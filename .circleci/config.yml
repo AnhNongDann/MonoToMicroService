@@ -1,0 +1,87 @@
+version: 2.1
+
+jobs:
+  build-api-feed:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t udagram-api-feed ./udagram-api-feed
+      - run:
+          name: Tagging
+          command: docker tag udagram-api-feed anhnongdann/udagram-api-feed:v3
+      - run:
+          name: Push
+          command: |
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+            docker push anhnongdann/udagram-api-feed:v3
+  build-api-user:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t udagram-api-user ./udagram-api-user
+      - run:
+          name: Tagging
+          command: docker tag udagram-api-user anhnongdann/udagram-api-user:v3
+      - run:
+          name: Push
+          command: |
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+            docker push anhnongdann/udagram-api-user:v3
+  build-frontend:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t udagram-frontend ./udagram-frontend
+      - run:
+          name: Tagging
+          command: docker tag udagram-frontend anhnongdann/udagram-frontend:v7
+      - run:
+          name: Push
+          command: |
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+            docker push anhnongdann/udagram-frontend:v7
+  build-reverseproxy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t udagram-reverseproxy ./udagram-reverseproxy
+      - run:
+          name: Tagging
+          command: docker tag udagram-reverseproxy anhnongdann/udagram-reverseproxy:v3
+      - run:
+          name: Push
+          command: |
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+            docker push anhnongdann/udagram-reverseproxy:v3
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/configuration-reference/#workflows
+workflows:
+  build-master:
+    jobs:
+      - build-api-feed
+      - build-api-user:
+          requires: 
+          - build-api-feed
+      - build-frontend:
+          requires: 
+          - build-api-user
+      - build-reverseproxy:
+          requires: 
+          - build-frontend
