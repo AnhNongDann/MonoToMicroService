@@ -17,6 +17,11 @@ spec:
       containers:
       - name: api-feed
         image: anhnongdann/udagram-api-feed:v3
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true
+            
         ports:
         - containerPort: 8080
         resources:
@@ -75,3 +80,7 @@ spec:
             secretKeyRef:
               name: env-secret
               key: POSTGRES_PASSWORD
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
