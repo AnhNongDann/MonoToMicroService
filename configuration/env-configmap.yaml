@@ -3,11 +3,11 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  AWS_BUCKET: trunghq520231109
+  AWS_BUCKET: my-project3-bucket
   AWS_PROFILE: default
   AWS_REGION: us-east-1
   JWT_SECRET: hello
-  POSTGRES_HOST: mydatabase.c3s5ln058mo2.us-east-1.rds.amazonaws.com
+  POSTGRES_HOST: my-database.cwxivop9sgjo.us-east-1.rds.amazonaws.com
   POSTGRES_DB: first_db
   URL: http://localhost:8100
   NODE_OPTIONS: --max-old-space-size=1024

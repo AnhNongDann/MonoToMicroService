@@ -79,3 +79,7 @@ spec:
             secretKeyRef:
               name: env-secret
               key: POSTGRES_PASSWORD
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
